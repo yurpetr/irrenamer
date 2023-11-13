@@ -13,11 +13,11 @@
 	</properties>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/io.github.homebeaver/swingx-core -->
-		<dependency>
+<!--		<dependency>
 			<groupId>io.github.homebeaver</groupId>
 			<artifactId>swingx-core</artifactId>
 			<version>1.7.6</version>
-		</dependency>
+		</dependency>-->
 
 
 	</dependencies>
