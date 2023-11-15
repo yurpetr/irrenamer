@@ -211,14 +211,14 @@ public class App {
                         Object td = t.getTransferData(DataFlavor.javaFileListFlavor);
                         if (td instanceof List) {
                             state = DragState.Accept;
-                            for (Object value : ((List) td)) {
-                                if (value instanceof File) {
-                                    File file    = (File) value;
-                                    File newFile = new File(file.getParent(), number + fileName);
-                                    if (newFile.exists()) {
+                            for (Object obj : ((List) td)) {
+                                if (obj instanceof File) {
+                                    File oldFile = (File) obj;
+                                    File newFile = new File(oldFile.getParent(), number + fileName);
+                                    if (!oldFile.equals(newFile) && newFile.exists()) {
                                         newFile.delete();
                                     }
-                                    file.renameTo(newFile);
+                                    oldFile.renameTo(newFile);
 
                                 }
                             }
