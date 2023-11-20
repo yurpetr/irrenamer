@@ -37,16 +37,13 @@ import javax.swing.text.StyledDocument;
 public class App {
 
     public enum DragState {
-
         Waiting, Accept, Reject
     }
 
     JTextField orderNumber;
 
     public static void main(String[] args) {
-
         new App();
-
     }
 
     public App() {
@@ -122,16 +119,11 @@ public class App {
             add(dropLight);
             add(dropMatte);
             add(dropUV);
-
         }
 
     }
 
     class DropArea extends JTextPane implements DropTargetListener {
-
-        /**
-         * 
-         */
 
         private String    fileName;
         private DragState state = DragState.Waiting;
