@@ -4,21 +4,94 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.yurpetr</groupId>
 	<artifactId>irrenamer</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>Interactive Renderings Renamer</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<junit.version>5.10.0</junit.version>
 		<maven.compiler.release>21</maven.compiler.release>
 	</properties>
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/io.github.homebeaver/swingx-core -->
-<!--		<dependency>
-			<groupId>io.github.homebeaver</groupId>
-			<artifactId>swingx-core</artifactId>
-			<version>1.7.6</version>
-		</dependency>-->
-
 
 	</dependencies>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>com.github.akman</groupId>
+					<artifactId>jpackage-maven-plugin</artifactId>
+					<version>0.1.5</version>
+					<dependencies>
+						<dependency>
+							<groupId>org.ow2.asm</groupId>
+							<artifactId>asm</artifactId>
+							<version>9.6</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>3.3.2</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>auto-clean</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+						<configuration>
+							<verbose>true</verbose>
+							<filesets>
+								<fileset>
+									<directory>${project.basedir}\IRRenamer</directory>
+								</fileset>
+							</filesets>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.github.akman</groupId>
+				<artifactId>jpackage-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>jpackage-image</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jpackage</goal>
+						</goals>
+						<configuration>
+							<toolhome>c:\Portable\jdk\jdk21u\</toolhome>
+							<dest>${project.basedir}</dest>
+							<name>IRRenamer</name>
+							<type>IMAGE</type>
+							<vendor>HoverUA, yurii.petrov@zd.hoverua.com</vendor>
+							<modulepath>
+								<dependencysets>
+									<dependencyset>
+										<includeoutput>true</includeoutput>
+										<excludeautomatic>true</excludeautomatic>
+									</dependencyset>
+								</dependencysets>
+							</modulepath>
+							<module>
+								com.yurpetr.irrenamer/com.yurpetr.irrenamer.App</module>
+							<!--<mainjar>
+								C:/Portable/eclipse-workspace/irrenamer/target/${project.artifactId}-${project.version}.jar</mainjar>-->
+							<input>
+								C:/Portable/eclipse-workspace/irrenamer/target/classes</input>
+							<mainclass>com.yurpetr.irrenamer.App</mainclass>
+							<appversion>${project.version}</appversion>
+							<description>Rename interactive renderings</description>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
