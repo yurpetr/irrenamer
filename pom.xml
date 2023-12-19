@@ -32,9 +32,26 @@
 					<artifactId>maven-clean-plugin</artifactId>
 					<version>3.3.2</version>
 				</plugin>
+				<plugin>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.3.0</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>com.yurpetr.irrenamer.App</mainClass>
+						</manifest>
+					</archive>
+					<finalName>irrenamer</finalName>
+				</configuration>
+			</plugin>
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
 				<executions>
